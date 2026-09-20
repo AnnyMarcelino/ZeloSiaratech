@@ -1,0 +1,16 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/prebackend.css"><title>Espaço do paciente — Zelo</title><link rel="stylesheet" href="css/zelo-v2.css"><link rel="stylesheet" href="css/zelo-v3-overrides.css"><link rel="stylesheet" href="css/zelo-v5-contrast.css"></head>
+<body class="patient">
+<header class="zelo-header"><a class="brand" href="index.html"><img class="zelo-logo-full exact-logo" src="assets/zelo-logo-exact.png" alt="Zelo — Tenha cuidado. Tenha zelo."></a>
+<div class="header-search">⌕ <input id="globalSearch" placeholder="Buscar no Zelo..." aria-label="Buscar no Zelo"></div>
+<div class="header-actions"><a href="notificacoes.html" class="header-icon">🔔</a><a href="perfis.html" class="avatar">A</a></div></header>
+<div class="app-layout"><aside class="sidebar"><div class="side-title">ESPAÇO</div>
+<a href="paciente.html">⌂ Visão geral</a><a href="medicamentos.html">💊 Medicamentos</a><a href="consultas.html">◷ Consultas</a><a href="exames.html">▣ Exames</a><a href="historico.html">↺ Histórico clínico</a><a href="orientacoes.html">✦ Orientações</a>
+<hr><a href="profissional.html">🩺 Espaço profissional</a><a href="cuidador.html">♡ Espaço cuidador</a><a href="configuracoes.html">⚙ Configurações</a></aside>
+<main class="main-content">
+<section class="page-title compact page-title-with-mark"><div class="title-mark"><img src="assets/zelo-mark.png" alt=""></div><div><span class="eyebrow">MEU CUIDADO</span><h1>Olá, <span data-user-name>você</span>.</h1><p>Seu cuidado reunido em um só lugar.</p></div></section>
+<div id="patientSummary" class="summary-grid"></div>
+<section class="dashboard-grid"><div class="panel"><div class="panel-head"><h2>Próxima consulta</h2><a href="consultas.html">Ver todas</a></div><div id="nextAppointment"></div></div>
+<div class="panel"><div class="panel-head"><h2>Medicamentos</h2><a href="medicamentos.html">Gerenciar</a></div><div id="medList"></div></div></section>
+<section class="quick-row"><a href="historico.html" class="quick">↺ Linha do cuidado</a><a href="notificacoes.html" class="quick">🔔 Central de cuidado</a><a href="orientacoes.html" class="quick">✦ Minhas orientações</a></section></main></div>
+<script src="js/api.js"></script><script src="js/auth-guard.js"></script><script src="js/clinical.js"></script><script src="js/dashboard.js"></script><script src="js/ui.js"></script></body></html>

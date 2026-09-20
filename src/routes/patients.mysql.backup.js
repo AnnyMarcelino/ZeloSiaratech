@@ -1,0 +1,11 @@
+const express=require('express');
+const db=require('../config/db');
+const {auth}=require('../middleware/auth');
+const {accessiblePatients}=require('../utils/access');
+const audit=require('../utils/audit');
+const router=express.Router();
+router.use(auth);
+router.get('/',async(req,res)=>{try{const ids=await accessiblePatients(req.user);if(!ids.length)return res.json([]);const ph=ids.map(()=>'?').join(',');const [rows]=await db.execute(`SELECT id,nome,email,tipo,status,criado_em FROM usuarios WHERE id IN (${ph}) ORDER BY nome`,ids);res.json(rows);}catch(e){res.status(500).json({error:'Erro ao listar pacientes.'});}});
+router.get('/me',async(req,res)=>{const [rows]=await db.execute('SELECT id,nome,email,tipo,status,criado_em FROM usuarios WHERE id=?',[req.user.id]);res.json(rows[0]);});
+router.get('/:id',async(req,res)=>{try{const ids=await accessiblePatients(req.user);if(!ids.includes(Number(req.params.id)))return res.status(403).json({error:'Sem acesso.'});const [rows]=await db.execute('SELECT id,nome,email,tipo,status,criado_em FROM usuarios WHERE id=?',[req.params.id]);if(!rows.length)return res.status(404).json({error:'Paciente não encontrado.'});res.json(rows[0]);}catch(e){res.status(500).json({error:'Erro ao consultar paciente.'});}});
+module.exports=router;

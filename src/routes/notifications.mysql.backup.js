@@ -1,0 +1,4 @@
+const express=require('express'); const db=require('../config/db'); const {auth}=require('../middleware/auth'); const {accessiblePatients}=require('../utils/access');
+const router=express.Router(); router.use(auth);
+router.get('/',async(req,res)=>{try{const ids=await accessiblePatients(req.user);if(!ids.length)return res.json({medicamentos:[],consultas:[]});const ph=ids.map(()=>'?').join(',');const [med]=await db.execute(`SELECT id,paciente_id,nome,horario FROM medicamentos WHERE paciente_id IN (${ph}) ORDER BY horario`,ids);const [cons]=await db.execute(`SELECT id,paciente_id,data_hora,tipo,local,status FROM consultas WHERE paciente_id IN (${ph}) AND status IN ('agendada','confirmada') ORDER BY data_hora LIMIT 20`,ids);res.json({medicamentos:med,consultas:cons});}catch(e){res.status(500).json({error:'Erro ao carregar notificações.'});}});
+module.exports=router;

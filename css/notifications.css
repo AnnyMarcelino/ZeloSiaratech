@@ -1,0 +1,67 @@
+
+/* Zelo — PASSO 9 */
+.notifications-page{
+  max-width:1050px;
+  margin:0 auto;
+  padding:32px 22px 70px;
+}
+.notifications-hero{
+  position:relative;
+  overflow:hidden;
+  background:#123b58;
+  color:#fff;
+  border-radius:30px;
+  padding:34px;
+  margin-bottom:24px;
+}
+.notifications-hero:after{
+  content:"";
+  position:absolute;
+  width:220px;height:220px;
+  right:-70px;top:-100px;
+  border-radius:50% 45% 55% 40%;
+  background:#8fcfc8;
+  opacity:.9;
+}
+.notifications-hero h1{margin:0 0 8px;font-size:clamp(28px,4vw,44px);position:relative;z-index:1}
+.notifications-hero p{margin:0;max-width:650px;line-height:1.6;position:relative;z-index:1}
+.notification-grid{display:grid;gap:14px}
+.notification-card{
+  display:flex;align-items:center;gap:16px;
+  background:#fffdf8;border:1px solid #dce5e4;
+  border-radius:22px;padding:17px 18px;
+  box-shadow:0 8px 24px rgba(18,59,88,.06);
+}
+.notification-card.important{border-left:5px solid #28799b}
+.notification-card.attention{border-left:5px solid #c78d45}
+.notification-icon{
+  min-width:52px;height:52px;border-radius:17px;
+  display:grid;place-items:center;background:#e8f3f1;font-size:25px;
+}
+.notification-body{flex:1;min-width:0}
+.notification-type{
+  font-size:12px;font-weight:800;letter-spacing:.08em;
+  text-transform:uppercase;color:#6b7e87;
+}
+.notification-body h3{margin:5px 0 3px;color:#17384c;font-size:17px}
+.notification-body p{margin:0;color:#6b7e87;line-height:1.4}
+.notification-dismiss{
+  border:0;background:transparent;color:#6b7e87;
+  font-size:25px;cursor:pointer;padding:7px 10px;
+}
+.empty-notifications{
+  text-align:center;padding:55px 20px;background:#fffdf8;
+  border:1px dashed #c9d9d8;border-radius:24px;
+}
+.empty-notifications span{
+  display:grid;place-items:center;margin:0 auto 14px;
+  width:58px;height:58px;border-radius:50%;background:#dff1ed;
+  color:#28799b;font-size:25px;font-weight:900;
+}
+.empty-notifications strong{display:block;color:#17384c;font-size:21px}
+.empty-notifications p{color:#6b7e87}
+@media(max-width:650px){
+ .notifications-page{padding:20px 14px 50px}
+ .notifications-hero{padding:27px 23px;border-radius:24px}
+ .notification-card{align-items:flex-start}
+}

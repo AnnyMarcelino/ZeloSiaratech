@@ -1,0 +1,146 @@
+/* ZELO V5 — contraste, navegação e login. Front-end only. */
+:root{
+  --z-chrome:#e4eef4;
+  --z-chrome-2:#d7e5ed;
+  --z-chrome-border:#c6d8e3;
+  --z-login-bg:#eaf5fa;
+  --z-login-card:#ffffff;
+  --z-logo-filter:none;
+}
+:root[data-theme="purple"]{
+  --z-chrome:#eee8f4;
+  --z-chrome-2:#e2d8eb;
+  --z-chrome-border:#d0c1dc;
+  --z-login-bg:#f3ebfa;
+}
+:root[data-theme="green"]{
+  --z-chrome:#e8f2ed;
+  --z-chrome-2:#dbe9e2;
+  --z-chrome-border:#c6dbd0;
+  --z-login-bg:#eef8f3;
+}
+:root[data-theme="dark"]{
+  --z-chrome:#171f29;
+  --z-chrome-2:#202b36;
+  --z-chrome-border:#354453;
+  --z-login-bg:#dbe9f2;
+}
+
+/* Keep the supplied Zelo logo blue in the default theme. */
+.brand .zelo-logo-full,
+.brand .exact-logo,
+.login-logo-art,
+.welcome-art img{filter:none!important;}
+:root[data-theme="purple"] .brand .zelo-logo-full,
+:root[data-theme="purple"] .brand .exact-logo,
+:root[data-theme="purple"] .login-logo-art,
+:root[data-theme="purple"] .welcome-art img{filter:hue-rotate(292deg) saturate(.88)!important;}
+:root[data-theme="green"] .brand .zelo-logo-full,
+:root[data-theme="green"] .brand .exact-logo,
+:root[data-theme="green"] .login-logo-art,
+:root[data-theme="green"] .welcome-art img{filter:hue-rotate(82deg) saturate(.86)!important;}
+:root[data-theme="dark"] .brand .zelo-logo-full,
+:root[data-theme="dark"] .brand .exact-logo,
+:root[data-theme="dark"] .login-logo-art,
+:root[data-theme="dark"] .welcome-art img{filter:brightness(.88) saturate(.9)!important;}
+
+/* Header: slightly darker than the content, with clear separation. */
+.zelo-header{
+  background:linear-gradient(180deg,var(--z-chrome),color-mix(in srgb,var(--z-chrome) 72%,#fff))!important;
+  border-bottom:1px solid var(--z-chrome-border)!important;
+  box-shadow:0 10px 28px rgba(26,56,76,.10)!important;
+}
+.header-search{background:rgba(255,255,255,.72)!important;border-color:var(--z-chrome-border)!important;}
+.header-icon,.avatar{background:rgba(255,255,255,.78)!important;}
+
+/* Sidebar: darker rail, but still light enough for a clinical UI. */
+.sidebar{
+  background:linear-gradient(180deg,var(--z-chrome-2),var(--z-chrome))!important;
+  border-right:1px solid var(--z-chrome-border)!important;
+  box-shadow:8px 0 28px rgba(27,59,78,.07)!important;
+}
+.sidebar a{
+  color:var(--ink)!important;
+  position:relative!important;
+}
+.sidebar a:hover,
+.sidebar a:first-of-type{
+  background:rgba(255,255,255,.64)!important;
+  color:var(--zelo-accent)!important;
+  box-shadow:inset 3px 0 0 var(--zelo-accent)!important;
+}
+.sidebar a::before{display:none!important;}
+.sidebar a .ui-icon{
+  display:inline-grid!important;
+  width:22px!important;
+  height:22px!important;
+  margin:0 3px 0 0!important;
+  color:var(--zelo-accent)!important;
+  flex:none!important;
+}
+.sidebar a .ui-icon svg{width:100%!important;height:100%!important;}
+.sidebar hr{border-top-color:var(--z-chrome-border)!important;}
+
+/* Give icon-led links a little visual language for older users. */
+.sidebar a .ui-icon::after{content:"";}
+
+/* Neutral content with controlled color accents. */
+.main-content{background:transparent!important;}
+.panel,.data-panel,.patient-profile,.progress-card,.routine-item,.settings-list{
+  background:rgba(255,255,255,.92)!important;
+}
+:root[data-theme="dark"] .panel,
+:root[data-theme="dark"] .data-panel,
+:root[data-theme="dark"] .patient-profile,
+:root[data-theme="dark"] .progress-card,
+:root[data-theme="dark"] .routine-item,
+:root[data-theme="dark"] .settings-list{background:#202934!important;}
+
+/* Subtle gradients rather than full-page saturation. */
+.hero-water{background:linear-gradient(120deg,var(--block-a) 0%,color-mix(in srgb,var(--block-a) 84%,#fff) 62%,color-mix(in srgb,var(--block-b) 42%,var(--block-a)) 100%)!important;}
+.hero-water::before{opacity:.12!important;}
+.hero-water::after{opacity:.14!important;}
+.feature-card:nth-child(1){background:linear-gradient(145deg,color-mix(in srgb,var(--block-b) 68%,#fff),#fff)!important;}
+.feature-card:nth-child(2){background:linear-gradient(145deg,color-mix(in srgb,var(--block-c) 62%,#fff),#fff)!important;}
+.feature-card:nth-child(3){background:linear-gradient(145deg,color-mix(in srgb,var(--block-d) 62%,#fff),#fff)!important;}
+.feature-card:nth-child(4){background:linear-gradient(145deg,var(--block-a),color-mix(in srgb,var(--block-a) 72%,#172f42))!important;}
+
+/* Patient summary: readable contrast and a calm clinical hierarchy. */
+.summary-card:nth-child(1),.summary-card:nth-child(2),.summary-card:nth-child(3){
+  background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--block-b) 25%,#fff))!important;
+  color:var(--ink)!important;
+}
+.summary-card:nth-child(2){background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--block-c) 22%,#fff))!important;}
+.summary-card:nth-child(3){background:linear-gradient(145deg,#fff,color-mix(in srgb,var(--block-d) 22%,#fff))!important;}
+.summary-card:nth-child(4){background:linear-gradient(145deg,var(--block-a),color-mix(in srgb,var(--block-a) 75%,#18384d))!important;}
+
+/* Login: same family, but much lighter so the exact blue logo remains readable. */
+.login-page{background:linear-gradient(135deg,var(--z-login-bg),#fff 72%)!important;}
+.login-shell{background:var(--z-login-card)!important;}
+.login-brand{
+  background:linear-gradient(145deg,var(--z-login-bg) 0%,color-mix(in srgb,var(--z-login-bg) 74%,#fff) 62%,#fff 100%)!important;
+  color:var(--ink)!important;
+  border-right:1px solid var(--z-chrome-border)!important;
+}
+.login-brand h1,.login-brand p,.login-brand small,.login-brand .brand-big>span:last-child{color:var(--ink)!important;}
+.login-brand::before{background:var(--zelo-wave)!important;opacity:.55!important;}
+.login-brand::after{background:var(--zelo-wave-2)!important;opacity:.7!important;}
+.login-logo-art{width:min(380px,92%)!important;filter:none!important;mix-blend-mode:multiply!important;}
+:root[data-theme="purple"] .login-logo-art{filter:hue-rotate(292deg) saturate(.88)!important;}
+:root[data-theme="green"] .login-logo-art{filter:hue-rotate(82deg) saturate(.86)!important;}
+:root[data-theme="dark"] .login-logo-art{filter:brightness(.88) saturate(.9)!important;}
+.login-card{background:#fff!important;box-shadow:0 20px 70px rgba(27,58,78,.12)!important;}
+
+/* Accessibility controls keep strong contrast regardless of theme. */
+.accessibility-trigger{box-shadow:0 8px 24px rgba(20,55,76,.16)!important;}
+
+@media(max-width:760px){
+  .sidebar{display:block!important;position:fixed!important;left:-285px!important;top:84px!important;bottom:0!important;width:276px!important;z-index:100!important;transition:left .25s ease!important;}
+  body.sidebar-open .sidebar{left:0!important;}
+}
+.zelo-sidebar .side-logo{width:185px;height:auto;display:block;object-fit:contain;background:#fff;border-radius:14px;padding:6px 10px;box-sizing:border-box;}
+.zelo-sidebar{background:linear-gradient(180deg,var(--z-chrome-2),var(--z-chrome))!important;border-right:1px solid var(--z-chrome-border)!important;}
+.zelo-nav a{color:var(--ink)!important;}
+.zelo-nav a.active,.zelo-nav a:hover{background:rgba(255,255,255,.64)!important;color:var(--zelo-accent)!important;}
+.zelo-nav .ico{display:inline-grid!important;width:22px!important;height:22px!important;color:var(--zelo-accent)!important;}
+@media(max-width:760px){.zelo-sidebar{display:none!important;}}

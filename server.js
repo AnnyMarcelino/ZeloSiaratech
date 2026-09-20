@@ -1,0 +1,72 @@
+require('dotenv').config();
+
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const morgan = require('morgan');
+const path = require('path');
+
+const health = require('./src/routes/health');
+const auth = require('./src/routes/auth');
+const records = require('./src/routes/records');
+const patients = require('./src/routes/patients');
+const notifications = require('./src/routes/notifications');
+const preferences = require('./src/routes/preferences');
+const links = require('./src/routes/links');
+
+const app = express();
+
+app.use(
+  helmet({
+    contentSecurityPolicy: false
+  })
+);
+
+app.use(cors({ origin: true }));
+
+app.use(express.json({ limit: '1mb' }));
+
+app.use(morgan('dev'));
+
+// Rotas da API
+
+app.use('/api/health', health);
+app.use('/api/auth', auth);
+
+app.use('/api/patients', patients);
+app.use('/api/notifications', notifications);
+app.use('/api/preferences', preferences);
+app.use('/api/links', links);
+
+app.use('/api', records);
+
+// Informações básicas da API
+app.get('/api', (req, res) => {
+  res.json({
+    name: 'Zelo API',
+    version: '1.0.0',
+    message: 'API online'
+  });
+});
+
+// Frontend
+app.use(express.static(__dirname));
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+// Tratamento de erros
+app.use((err, req, res, next) => {
+  console.error('Erro interno:', err);
+
+  res.status(500).json({
+    error: 'Erro interno do servidor.'
+  });
+});
+
+const port = Number(process.env.PORT || 3000);
+
+app.listen(port, '0.0.0.0', () => {
+  console.log(`Zelo rodando em http://localhost:${port}`);
+});
